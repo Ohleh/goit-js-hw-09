@@ -17,6 +17,6 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{"./types/options":"lJVm","./l10n/default":"SFEe","./utils":"U4Vg","./utils/dom":"UwHZ","./utils/dates":"viQd","./utils/formatting":"KtbI","./utils/polyfills":"pFfd"}],"c0Wa":[function(require,module,exports) {
 
 },{}],"d2uN":[function(require,module,exports) {
-"use strict";var t=e(require("flatpickr"));function e(t){return t&&t.__esModule?t:{default:t}}require("flatpickr/dist/flatpickr.min.css");const n={input:document.querySelector('input[type="text"]'),button:document.querySelector("button[data-start]")};console.log(n.input),console.log(n.button),(0,t.default)(n.input,o);const o={enableTime:!0,time_24hr:!0,defaultDate:new Date,minuteIncrement:1,onClose(t){console.log(t[0])}};
+"use strict";var e=t(require("flatpickr"));function t(e){return e&&e.__esModule?e:{default:e}}require("flatpickr/dist/flatpickr.min.css");const a={input:document.querySelector("#datetime-picker"),button:document.querySelector("button[data-start]"),dataDays:document.querySelector("span[data-days]"),dataHours:document.querySelector("span[data-hours]"),dataMinutes:document.querySelector("span[data-minutes]"),dataSeconds:document.querySelector("span[data-seconds]")},n={enableTime:!0,time_24hr:!0,defaultDate:new Date,minuteIncrement:1,onClose(e){console.log(e[0])}};(0,e.default)(a.input,n);const o=(0,e.default)(a.input,n);console.log(o);const u=new Date("March 16, 2030");console.log(u.toUTCString());
 },{"flatpickr":"BKNP","flatpickr/dist/flatpickr.min.css":"c0Wa"}]},{},["d2uN"], null)
-//# sourceMappingURL=/goit-js-hw-09/02-timer.5147f419.js.map
+//# sourceMappingURL=/goit-js-hw-09/02-timer.b9aeebfb.js.map
