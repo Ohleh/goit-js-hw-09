@@ -9,7 +9,9 @@ const ref = {
   dataMinutes: document.querySelector('span[data-minutes]'),
   dataSeconds: document.querySelector('span[data-seconds]'),
 };
-// const MEMORY = 'fff';
+
+const MEMORY = 'selectedDatesInStorage';
+ref.button.disabled = true;
 
 const options = {
   enableTime: true,
@@ -17,69 +19,64 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    console.log(selectedDates[0]);
-    // sessionStorage.setItem('fff', selectedDates[0]);
-    // const selectedDate = new Date(selectedDates[0]);
+    // console.log(selectedDates[0]);
+    if (options.defaultDate < selectedDates[0]) {
+      ref.button.disabled = false;
+      sessionStorage.setItem('selectedDatesInStorage', selectedDates[0]);
+    }
+    if (options.defaultDate > selectedDates[0]) {
+      window.alert('Денис, обери нормальну дату');
+    }
   },
 };
 
-// ref.button.disabled = true;
 flatpickr(ref.input, options);
-const selDate = flatpickr(ref.input, options);
-console.log(selDate);
+ref.button.addEventListener('click', onStartButton);
 
-const date = new Date('March 16, 2030');
-// const date1 = new Date().getTime();
-// const dateN = Date.now('March 16, 2030');
+function onStartButton() {
+  const selectedDatesMiliSec = new Date(sessionStorage.getItem(MEMORY)).getTime();
+  const timerId = setInterval(() => {
+    const defaultDateNow = Date.now();
+    const difference = selectedDatesMiliSec - defaultDateNow;
 
-console.log(date.toUTCString());
-// console.log(date.getDay());
-// console.log(dateN);
-// check();
+    if (difference >= 0) {
+      // console.log(convertMs(difference));
+      convertMs(difference);
+    } else {
+      window.alert('You are the best of the best 🏆');
+      clearInterval(timerId);
+    }
+  }, 1000);
+}
 
-// function check() {
-//   if () < date.toUTCString()) {
-//     window.alert('Денис, обери нормальну дату');
-//   } else {
-//     console.log('data bilsha vse ok');
-//   }
-// }
+function convertMs(ms) {
+  // Number of milliseconds per unit of time
+  const second = 1000;
+  const minute = second * 60;
+  const hour = minute * 60;
+  const day = hour * 24;
 
-// console.log('дефолтна дата в flatpickr (сьогодні)', options.defaultDate);
-//
-//
-// ref.input.addEventListener('click', onInputAction);
+  // Remaining days
+  const days = Math.floor(ms / day);
+  const daysString = days.toString();
+  ref.dataDays.textContent = addLeadingZero(daysString);
 
-// function onInputAction() {
-//   console.log(sessionStorage.getItem(MEMORY));
-//   const selectedDate = new Date(sessionStorage.getItem(MEMORY));
-//   const defaultDateee = new Date(options.defaultDate);
-//   // console.log(selectedDate);
-//   console.log(selectedDate.toUTCString());
-//   console.log(defaultDateee.toUTCString());
-//   if (selectedDate.toUTCString() > defaultDateee.toUTCString()) {
-//     console.log('data mensha');
-//     //   window.alert('Денис, обери нормальну дату');
-//   }
-//   if (selectedDate.toUTCString() < defaultDateee.toUTCString()) {
-//     console.log('data bilsha vse ok');
-//     //   ref.button.disabled = false;
-//     // sessionStorage.clear();
-//   }
-// }
-//
-//
-//
-// function checkTimmerDate() {
-//   if
-// }
-//
-//
-//
-//
-//
-//
-// console.log(ref.dataDays.textContent);
-// console.log(ref.dataHours.textContent);
-// console.log(ref.dataMinutes.textContent);
-// console.log(ref.dataSeconds.textContent);
+  // Remaining hours
+  const hours = Math.floor((ms % day) / hour);
+  const hoursString = hours.toString();
+  ref.dataHours.textContent = addLeadingZero(hoursString);
+  // Remaining minutes
+  const minutes = Math.floor(((ms % day) % hour) / minute);
+  const minutesString = minutes.toString();
+  ref.dataMinutes.textContent = addLeadingZero(minutesString);
+  // Remaining seconds
+  const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+  const secondsString = seconds.toString();
+  ref.dataSeconds.textContent = addLeadingZero(secondsString);
+
+  function addLeadingZero(val) {
+    return val.padStart(2, '0');
+  }
+
+  return { days, hours, minutes, seconds };
+}
