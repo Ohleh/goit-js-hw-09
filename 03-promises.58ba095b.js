@@ -5,4 +5,4 @@ var t,e=arguments[3];!function(e,i){"function"==typeof t&&t.amd?t([],function(){
 },{}],"GyVV":[function(require,module,exports) {
 "use strict";var e=t(require("notiflix"));function t(e){return e&&e.__esModule?e:{default:e}}const o={inputDelay:document.querySelector(".form"),buttonSubmit:document.querySelector("button")};function n(t){t.preventDefault();let o=t.target.delay.value,n=t.target.step.value,u=t.target.amount.value;setTimeout(()=>{!function(t,o){const n=setInterval(()=>{const l=new Promise((l,i)=>{const r=Math.random()>.5;(t+=1)<=u?r?(l(`✅ Fulfilled promise ${t} in ${o}ms`),e.default.Notify.success("Sol lucet omnibus")):(i(`❌ Rejected promise ${t} in ${o}ms`),e.default.Notify.failure("Qui timide rogat docet negare")):clearInterval(n)});l.then(e=>{console.log(e)}).catch(e=>{console.log(e)})},o)}(0,n)},o)}o.inputDelay.addEventListener("submit",n);
 },{"notiflix":"cwzQ"}]},{},["GyVV"], null)
-//# sourceMappingURL=/goit-js-hw-09/03-promises.79247490.js.map
+//# sourceMappingURL=/goit-js-hw-09/03-promises.58ba095b.js.map
