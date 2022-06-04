@@ -1,6 +1,7 @@
 import Notiflix from 'notiflix';
 // import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
 // import { Block } from 'notiflix/build/notiflix-block-aio';
+//
 const fer = {
   inputDelay: document.querySelector('.form'),
   // inputDelay: document.querySelector('.form input[name="step"]'),
