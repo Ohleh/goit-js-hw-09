@@ -1,11 +1,15 @@
+import Notiflix from 'notiflix';
+// import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
+// import { Block } from 'notiflix/build/notiflix-block-aio';
 const fer = {
   inputDelay: document.querySelector('.form'),
   // inputDelay: document.querySelector('.form input[name="step"]'),
   buttonSubmit: document.querySelector('button'),
 };
 
-fer.inputDelay.addEventListener('submit', fff);
-function fff(el) {
+fer.inputDelay.addEventListener('submit', onSabmitButton);
+
+function onSabmitButton(el) {
   el.preventDefault();
 
   let firsDelay = el.target.delay.value;
@@ -32,9 +36,11 @@ function fff(el) {
           if (shouldResolve) {
             // Fulfill
             resolve(`✅ Fulfilled promise ${position} in ${delay}ms`);
+            Notiflix.Notify.success('Sol lucet omnibus');
           } else {
             // Reject
             reject(`❌ Rejected promise ${position} in ${delay}ms`);
+            Notiflix.Notify.failure('Qui timide rogat docet negare');
           }
         } else {
           clearInterval(int);

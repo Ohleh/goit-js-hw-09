@@ -34,6 +34,8 @@ flatpickr(ref.input, options);
 ref.button.addEventListener('click', onStartButton);
 
 function onStartButton() {
+  ref.button.disabled = true;
+  ref.input.disabled = true;
   const selectedDatesMiliSec = new Date(sessionStorage.getItem(MEMORY)).getTime();
   const timerId = setInterval(() => {
     const defaultDateNow = Date.now();
